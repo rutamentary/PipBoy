@@ -9,34 +9,58 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     </head>
-    <body>
+    <body class="old-crt-monitor">
         <div class="retro-container scanline-effect">
-            <header>
-                <h1></h1>
-                <nav role="navigation">
-                    <ul>
-                        <li><a href="#screen-1">SCREEN 1</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <main>
+            <div id="main">
                 <section id="screen-1">
                     <article>
                         <header>
                             <h2>SCREEN 1</h2>
                         </header>
                         <div class="content">
-                            Lorem ipsum...
+                            <video width="320" height="240" muted autoplay loop>
+                                <source src="videos/girl_bw.mp4" type="video/mp4">
+                            </video>
                         </div>
-                        <figure>
-                            <img src="images/url_illustration.jpeg" alt="alt text for illustration">
-                        </figure>
                     </article>
                 </section>
-            </main>
-            <footer>
-                <p></p>
-            </footer>
+                <section id="screen-2">
+                    <article>
+                        <header>
+                            <h2>SCREEN 2</h2>
+                        </header>
+                        <div class="content">
+                            <video width="320" height="240" muted autoplay loop>
+                                <source src="videos/neon.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </article>
+                </section>
+                <section id="screen-3"></section>
+                    <article>
+                        <header>
+                            <h2>SCREEN 3</h2>
+                        </header>
+                        <div class="content">
+                            <video width="320" height="240" muted autoplay loop>
+                                <source src="videos/shuffle.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </article>
+                </section>
+            </div>
+            <header class="nav">
+                <nav role="navigation">
+                    <ul>
+                        <li><a href="#screen-1">SCREEN 1</a></li>
+                        <li><a href="#screen-2">SCREEN 2</a></li>
+                        <li><a href="#screen-3">SCREEN 3</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    
+                </div>
+            </header>
         </div>
     </body>
     <script>
@@ -45,8 +69,7 @@
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                const main = document.querySelector('main');
-
+                const main = document.querySelector('#main');
                 if (targetElement) {
                     main.scrollTo({
                         top: targetElement.offsetTop - main.offsetTop,
@@ -55,6 +78,9 @@
                 }
             });
         });
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('video').defaultPlaybackRate = 0.5;
+            document.querySelector('video').play();
+        });
     </script>
-    
 </html>

@@ -29,6 +29,7 @@ div.retro-container {
     height: 90vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    grid-template-columns: auto 2fr auto;
     overflow: hidden;
     padding: 0.5rem;
     border: 2px solid var(--primary-color);
@@ -38,15 +39,28 @@ div.retro-container {
     text-shadow: 0 0 0.5rem;
 }
 
-header,
-footer {
+header {
     display: flex;
     gap: 2rem;
     align-items: center;
 }
 
-main {
+#main {
     overflow: hidden;
+}
+
+a {
+    color: var(--primary-color);
+}
+
+#nav, nav {
+    float:right;
+    margin-left:3rem;
+    width: 25%;
+}
+
+video {
+    border-radius: 25px;
 }
 
 section {
