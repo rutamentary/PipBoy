@@ -18,8 +18,8 @@
                             <h2>SCREEN 1</h2>
                         </header>
                         <div class="content">
-                            <video width="320" height="240" muted autoplay loop>
-                                <source src="videos/girl_bw.mp4" type="video/mp4">
+                            <video width="320" height="240" muted autoplay loop preload="metadata">
+                                <source src="videos/neon.mp4" type="video/mp4">
                             </video>
                         </div>
                     </article>
@@ -30,8 +30,8 @@
                             <h2>SCREEN 2</h2>
                         </header>
                         <div class="content">
-                            <video width="320" height="240" muted autoplay loop>
-                                <source src="videos/neon.mp4" type="video/mp4">
+                            <video width="320" height="240" muted autoplay loop preload="metadata">
+                                <source src="videos/girl_bw.mp4" type="video/mp4">
                             </video>
                         </div>
                     </article>
@@ -42,7 +42,7 @@
                             <h2>SCREEN 3</h2>
                         </header>
                         <div class="content">
-                            <video width="320" height="240" muted autoplay loop>
+                            <video width="320" height="240" muted autoplay loop preload="none" controls>
                                 <source src="videos/shuffle.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -57,12 +57,12 @@
                         <li><a href="#screen-3">SCREEN 3</a></li>
                     </ul>
                 </nav>
-                <div>
-                    
-                </div>
             </header>
         </div>
     </body>
+    <script src="js/p5/p5.min.js"></script>
+    <script src="js/p5/addons/p5.sound.js"></script>
+    <script src="js/beatdetektor.js"></script>
     <script>
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -78,9 +78,32 @@
                 }
             });
         });
-        window.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('video').defaultPlaybackRate = 0.5;
-            document.querySelector('video').play();
-        });
+        document.querySelectorAll('video').forEach(video => {
+            video.defaultPlaybackRate = 0.5;
+        })
+
+        // beatdetektor stuff
+
+        bd_med = new BeatDetektor(85,169);
+
+        vu = new BeatDetektor.modules.vis.VU();
+        kick_det = new BeatDetektor.modules.vis.BassKick();
+
+        // p5 stuff
+        mic = new p5.AudioIn();
+        mic.start();
+        fft = new p5.FFT();
+        fft.setInput(mic);
+
+        funk = function(){
+            spectrum = fft.analyze();
+
+            bd_med.process( (new Date).getTime(), spectrum)
+        }
+
+        // analyse with 60 frames, we could maybe use requestAnimationFrame here
+        setInterval( funk, 1000/60 )
+
+        //from https://stackoverflow.com/questions/38029623/detecting-bpm-of-audio-input-using-javascript
     </script>
 </html>

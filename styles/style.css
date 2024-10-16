@@ -4,7 +4,8 @@
     --primary-color: #ffd52c;
     --secondary-color: #ff5c00;
     --tertiary-color: #c72d04;
-    --background-color: #111;
+    /* --background-color: #111; */
+    --background-color: #000000;
     scrollbar-color: var(--primary-color) var(--secondary-color);
     font-size: clamp(18px, 3vw, 30px);
 }
@@ -59,8 +60,11 @@ a {
     width: 25%;
 }
 
-video {
-    border-radius: 25px;
+.content {
+    border-radius: 35px;
+    overflow: hidden; 
+    width: 320px;
+    height: 240px;
 }
 
 section {
